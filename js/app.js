@@ -16,3 +16,30 @@ class UI {
     this.itemID = 0;
   }
 }
+
+function eventListeners () {
+const budgetForm = document.getElementById('buget-form');
+const ExpenseForm = document.getElementById('expense-form');
+const Expenselist = document.getElementById('expense-list');
+
+//New instance of de UI Class
+const ui = new UI()
+
+// buget form submit
+budgetForm.addEventListener('submit', function(event){
+  event.preventDefault();
+})
+// expense form submit
+expenseForm.addEventListener('submit', function(event){
+  event.preventDefault();
+
+})
+// expense click
+expenseList.addEventListener('click', function(){  
+})
+
+}
+
+document. addEventListener('DOMContentLoaded', function () {
+  eventListeners();
+})
