@@ -15,18 +15,34 @@ class UI {
     this.itemList = [];
     this.itemID = 0;
   }
-  //Submit buget method
+  //Submit budget method
   submitBugetForm(){
     const value = this.budgetInput.value;
     if(value==='' || value < 0){
       this.budgetFeedback.classList.add('showItem');
       this.budgetFeedback.innerHTML = `<p>value cannot be empty or negative</p>`;
       const self = this;
-      console.log(this)
+      //console.log(this)
       setTimeout(function(){
         self.budgetFeedback.classList.remove('showItem');
       },4000)
     }
+    else{
+      this.budgetAmount.textContent = value;
+      this.budgetInput.value = "";
+      this.showBalance();      
+    }
+  }
+  // Show balance
+  showBalance(){
+    const expense = this.totalExpense();
+    const total = parseInt(this.budgetAmount.textContent) - expense;
+    this.balanceAmount.textContent = total
+  }
+  // total expense
+  totalExpense(){
+    let total = 4000;
+    return total; 
   }
 }
 
