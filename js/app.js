@@ -107,7 +107,6 @@ class UI {
   // total expense
   totalExpense(){
     let total = 0;
-
     
 if(this.itemList.length > 0){
   total = this.itemList.reduce(function(acc, curr){
@@ -119,6 +118,30 @@ if(this.itemList.length > 0){
 this.expenseAmount.textContent = total;
 
     return total; 
+  }
+//Edit expense
+  editExpense(element){
+    let id= parseInt(element.dataset.id);
+    let parent = element.parentElement.parentElement.parentElement;
+    //remove from dom
+    this.expenseList.removeChild(parent);
+    //remove from the dom
+    let expense = this.itemList.filter(function(item){
+      return item.id === id;
+    })
+    //show value
+    this.expenseInput.value = expense[0].title;
+    this.amountInput.value = expense[0].amount;
+    //remove from the list
+    let tempList = this.itemList.filter(function(item){
+      return item.id !== id;
+    })
+    this.itemList = tempList;
+    this.showBalance();
+  }
+//delete expense
+  deleteExpense(element){
+    
   }
 }
 
@@ -134,15 +157,22 @@ const ui = new UI()
 budgetForm.addEventListener('submit', function(event){
   event.preventDefault();
   ui.submitBugetForm();
-})
+});
 // expense form submit
 expenseForm.addEventListener('submit', function(event){
   event.preventDefault();
   ui.submitExpenseForm();
-})
+});
 // expense click
-expenseList.addEventListener('click', function(){  
-})
+expenseList.addEventListener('click', function(event){
+  //console.log(event.target)
+  if(event.target.parentElement.classList.contains('edit-icon')){
+    ui.editExpense(event.target.parentElement)
+  }else if (Element.target.parentElement.classList.contains('delete-icon')){
+    ui.deleteExpense(event.target.parentElement)
+  }
+
+});
 
 }
 
