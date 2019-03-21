@@ -76,6 +76,7 @@ class UI {
       this.itemList.push(expense);
       this.addExpense(expense)
       //show balance
+      this.showBalance();
     }
   }
 
@@ -105,7 +106,18 @@ class UI {
 
   // total expense
   totalExpense(){
-    let total = 4000;
+    let total = 0;
+
+    
+if(this.itemList.length > 0){
+  total = this.itemList.reduce(function(acc, curr){
+    //console.log(`total is ${acc} and the current value is ${curr.amount}`);
+    acc += curr.amount;
+    return acc;
+  },0)
+}
+this.expenseAmount.textContent = total;
+
     return total; 
   }
 }
